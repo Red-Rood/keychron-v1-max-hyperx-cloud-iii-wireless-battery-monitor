@@ -282,7 +282,7 @@ class TrayApp:
             winreg.HKEY_CURRENT_USER,
             r"Software\Microsoft\Windows\CurrentVersion\Run",
         ) as key:
-            if item is not None and item.checked:
+            if not self._startup_enabled():
                 winreg.SetValueEx(key, "HyperXBatteryTray", 0, winreg.REG_SZ, self._startup_command())
             else:
                 try:
